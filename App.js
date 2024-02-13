@@ -6,6 +6,7 @@ import { User, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { firebaseAuth } from './FirebaseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigator from './app/navigation/AppNavigator';
 import TutorialNavigation from './app/navigation/TutorialNavigation';
@@ -51,31 +52,20 @@ export default function App() {
   return (
     <SafeAreaView style={{ flex: 1}}>
       
-    <NavigationContainer>
-    {/* <Stack.Navigator initialRouteName={"TutorialNavigation"}>
-      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-      <Stack.Screen name="AppNavigator" component={AppNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="TutorialNavigation" component={TutorialNavigation} options={{ headerShown: false }} />
-    </Stack.Navigator> */}
-    {/* <Stack.Navigator initialRouteName={user ? (isNewUser ? 'TutorialNavigation' : 'AppNavigator') : 'Login'}>
-      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-      <Stack.Screen name="AppNavigator" component={AppNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="TutorialNavigation" component={TutorialNavigation} options={{ headerShown: false }} />
-    </Stack.Navigator> */}
-    <Stack.Navigator>
-        {user ? (
-          isNewUser ? (
+      <NavigationContainer>
+        <Stack.Navigator>
+          {!user ? (
+            <>
+              <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+              <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+            </>
+          ) : isNewUser ? (
             <Stack.Screen name="TutorialNavigation" component={TutorialNavigation} options={{ headerShown: false }} />
           ) : (
             <Stack.Screen name="AppNavigator" component={AppNavigator} options={{ headerShown: false }} />
-          )
-        ) : (
-          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        )}
-        
-      <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }}/>
-      </Stack.Navigator>
-  </NavigationContainer>
+          )}            
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
