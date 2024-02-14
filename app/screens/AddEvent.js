@@ -89,37 +89,53 @@ const AddEvent = () => {
       setSelected={(val) => handlePlaceChange(val)}
       data={formattedPlacesData}
       save="value"
+      style={styles.input}
     />
       {selectedPlace && <Text>Selected Place: {selectedPlace}</Text>}
       
-      <Text style={styles.label}>Date:</Text>
+      <Text style={styles.label}>Date (DD/MM/YYYY HH:MM):</Text>
       <TextInput
         style={styles.input}
         value={date}
         onChangeText={text => setDate(text)}
-        placeholder="YYYY-MM-DD HH:MM"
+        placeholder="DD/MM/YYYY HH:MM"
       />
-      <Button title="Add Event" onPress={addEvent} />
+      <Button title="Add Event" onPress={addEvent} color="#007260" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 5,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-});
-
+    container: {
+      flex: 1,
+      padding: 20,
+      backgroundColor: '#fff', 
+    },
+    label: {
+      fontSize: 18,
+      marginBottom: 5,
+      color: '#39B68D', 
+    },
+    input: {
+      height: 40,
+      borderColor: '#39B68D', 
+      borderWidth: 1,
+      marginBottom: 10,
+      paddingHorizontal: 10,
+      borderRadius: 10, 
+      color: '#007260', 
+    },
+    button: {
+      backgroundColor: '#39B68D', 
+      borderRadius: 10, 
+      paddingVertical: 12,
+      paddingHorizontal: 20,
+      alignItems: 'center',
+      marginBottom: 10,
+    },
+    buttonText: {
+      color: '#fff', 
+      fontSize: 16,
+    },
+  });
 export default AddEvent;
