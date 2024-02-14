@@ -1,6 +1,6 @@
 const placesData = [
     //parkings
-    { name: 'parking 1', coordinates: { latitude: 33.225696897660285,longitude: -8.488772979709983, icon: "local-parking"} },
+    { name: 'parking 1', coordinates: { latitude: 33.225696897660285,longitude: -8.488772979709983} },
     { name: 'parking 2', coordinates: { latitude: 33.225844495176, longitude: -8.485705494962309 } },
     { name: 'parking 3', coordinates: { latitude: 33.22457713382194, longitude: -8.485868898895305  } },
     { name: 'parking 4', coordinates: { latitude: 33.226620591053766,longitude: -8.487388202295444  } },
