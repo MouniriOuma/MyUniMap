@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { firebaseAuth, firestoreDB } from '../../FirebaseConfig';
-import { collection, addDoc } from "firebase/firestore"; // Add these imports
+import { collection, addDoc } from "firebase/firestore";
+import placesData from '../data/places';
+import { SelectList } from 'react-native-dropdown-select-list'
+import { useNavigation } from '@react-navigation/native';
+
+
+
 
 const AddEvent = () => {
   const [title, setTitle] = useState('');
@@ -9,6 +15,23 @@ const AddEvent = () => {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [creator, setCreator] = useState('');
+
+
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
+  const handlePlaceChange = (value) => {
+    setLocation(value);
+  };
+
+  // Transform placesData to match the expected format of SelectList
+  const formattedPlacesData = placesData.map((place) => ({
+    label: place.name,
+    value: place.name,
+  }));
+
+
+
+
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged(user => {
@@ -20,6 +43,8 @@ const AddEvent = () => {
     });
     return unsubscribe;
   }, []);
+
+  const navigation = useNavigation();
 
   const addEvent = async () => {
     try {
@@ -37,6 +62,9 @@ const AddEvent = () => {
       setDescription('');
       setLocation('');
       setDate('');
+
+      // Navigate to the EventList page
+      navigation.navigate('Events');
     } catch (error) {
       console.error('Error adding event:', error);
     }
@@ -56,12 +84,14 @@ const AddEvent = () => {
         value={description}
         onChangeText={text => setDescription(text)}
       />
-      <Text style={styles.label}>Location:</Text>
-      <TextInput
-        style={styles.input}
-        value={location}
-        onChangeText={text => setLocation(text)}
-      />
+
+<SelectList
+      setSelected={(val) => handlePlaceChange(val)}
+      data={formattedPlacesData}
+      save="value"
+    />
+      {selectedPlace && <Text>Selected Place: {selectedPlace}</Text>}
+      
       <Text style={styles.label}>Date:</Text>
       <TextInput
         style={styles.input}
