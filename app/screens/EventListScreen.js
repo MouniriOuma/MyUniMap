@@ -1,79 +1,106 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet, ScrollView, RefreshControl } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, increment  } from 'firebase/firestore';
 import { firestoreDB } from '../../FirebaseConfig';
+
 
 
 
 const EventList = ({ navigation }) => {
     const [events, setEvents] = useState([]);
+    
+    //refreshing page
+    const [refreshing, setRefreshing] = useState(false);
+    
 
     // Function to generate a random color
-const generateRandomColor = () => {
-    const colors = ['#F74A2B', '#D73C1B', '#2BFA8F', '#23CA7F', '#2AAFFF', '#239AFF', '#F72BE7', '#D718D7', '#D72BE7', '#C718D7', '#2BFDCC', '#23CACC'];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
-
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const eventsCollection = collection(firestoreDB, 'events');
-        const querySnapshot = await getDocs(eventsCollection);
-
-        const eventData = [];
-        querySnapshot.forEach((doc) => {
-          const event = doc.data();
-          eventData.push({
-            id: doc.id,
-            title: event.title,
-            date: event.date,
-            likes: event.likes,
-            creator: event.creator,
-            description: event.description,
-            location: event.location,
-          });
-        });
-
-        setEvents(eventData);
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      }
+    const generateRandomColor = () => {
+        const colors = ['#F74A2B', '#D73C1B', '#2BFA8F', '#23CA7F', '#2AAFFF', '#239AFF', '#F72BE7', '#D718D7', '#D72BE7', '#C718D7', '#2BFDCC', '#23CACC'];
+        return colors[Math.floor(Math.random() * colors.length)];
     };
 
-    fetchEvents();
-  }, []);
 
-            const renderEventItem = ({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('EventDetails', { eventId: item.id })}>
-            <View style={styles.eventContainer}>
-            <View style={[styles.eventImage, { backgroundColor: generateRandomColor() }]} />
-            <View style={styles.eventInfo}>
-                <Text style={styles.eventTitle}>{item.title}</Text>
-                <Text style={styles.eventDate}>{item.date}</Text>
-                <View style={styles.likeContainer}>
-                <View style={styles.likesContainer}>
-                    <Ionicons name="heart" size={20} color="#007260" />
-                    <Text style={styles.likes}>{item.likes}</Text>
+    useEffect(() => {
+        fetchEvents();
+    }, []);
+
+
+    const fetchEvents = async () => {
+        try {
+            const eventsCollection = collection(firestoreDB, 'events');
+            const querySnapshot = await getDocs(eventsCollection);
+
+            const eventData = [];
+            querySnapshot.forEach((doc) => {
+                const event = doc.data();
+                eventData.push({
+                    id: doc.id,
+                    title: event.title,
+                    date: event.date,
+                    likes: event.likes,
+                    creator: event.creator,
+                    description: event.description,
+                    location: event.location,
+                });
+            });
+
+            setEvents(eventData);
+        } catch (error) {
+            console.error('Error fetching events:', error);
+        }
+    };
+
+    const onRefresh = () => {
+        setRefreshing(true);
+        fetchEvents().then(() => {
+            setRefreshing(false);
+        }).catch(error => {
+            console.error('Error refreshing data:', error);
+            setRefreshing(false);
+        });
+    };
+
+    
+
+
+        const renderEventItem = ({ item }) => (
+            <TouchableOpacity onPress={() => navigation.navigate('EventDetails', { eventId: item.id })}>
+                <View style={styles.eventContainer}>
+                    <View style={[styles.eventImage, { backgroundColor: generateRandomColor() }]} />
+                    <View style={styles.eventInfo}>
+                        <Text style={styles.eventTitle}>{item.title}</Text>
+                        <Text style={styles.eventDate}>{item.date}</Text>
+                        
+                        <View style={styles.likeContainer}>
+                            <View style={styles.likesContainer}>
+                                <Ionicons name="heart" size={20} color="#007260" />
+                                <Text style={styles.likes}>{item.likes}</Text>
+                            </View>
+                        
+                            <TouchableOpacity style={styles.likeButton} >
+                                <Text style={styles.likeButtonText} >Like</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                 </View>
-                <TouchableOpacity style={styles.likeButton}>
-                    <Text style={styles.likeButtonText}>Like</Text>
-                </TouchableOpacity>
-                </View>
-            </View>
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
         );
 
       return (
-        <View style={styles.container}>
+    <View style={styles.container}>
         <FlatList
             data={events}
             renderItem={renderEventItem}
             keyExtractor={item => item.id.toString()}
             style={{ flexGrow: 1 }}
+            refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                    colors={['#007260']} 
+                />
+            }
         />
         {/* Round button for adding an event */}
         <TouchableOpacity
@@ -82,8 +109,9 @@ const generateRandomColor = () => {
         >
             <Ionicons name="add" size={30} color="#fff" />
         </TouchableOpacity>
-        </View>
-      );
+    </View>
+);
+
     };
 
 const styles = StyleSheet.create({
