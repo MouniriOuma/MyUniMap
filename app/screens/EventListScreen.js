@@ -16,7 +16,7 @@ const EventList = ({ navigation }) => {
 
     // Function to generate a random color
     const generateRandomColor = () => {
-        const colors = ['#F74A2B', '#D73C1B', '#2BFA8F', '#23CA7F', '#2AAFFF', '#239AFF', '#F72BE7', '#D718D7', '#D72BE7', '#C718D7', '#2BFDCC', '#23CACC'];
+        const colors = ['#006652', '#005B45', '#004F38', '#002A20','#2B9C78', '#238663', '#1B704D', '#0A372B'];
         return colors[Math.floor(Math.random() * colors.length)];
     };
 
