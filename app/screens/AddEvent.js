@@ -85,12 +85,12 @@ const AddEvent = () => {
         onChangeText={text => setDescription(text)}
       />
 
-<SelectList
+      <SelectList
       setSelected={(val) => handlePlaceChange(val)}
       data={formattedPlacesData}
       save="value"
       style={styles.input}
-    />
+      />
       {selectedPlace && <Text>Selected Place: {selectedPlace}</Text>}
       
       <Text style={styles.label}>Date (DD/MM/YYYY HH:MM):</Text>
