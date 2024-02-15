@@ -41,7 +41,7 @@ const EventDetails = ({ route, navigation }) => {
 
   const handleLocationPress = () => {
     // Navigate to UniversityMap and pass the location name as a parameter
-    navigation.navigate('UniversityMap', { location: eventDetails.location });
+    navigation.navigate('UniversityMap', { userDestination: eventDetails.location });
   };
 
   // Once the event details are fetched, display them

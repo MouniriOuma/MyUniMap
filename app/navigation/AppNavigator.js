@@ -24,7 +24,7 @@ const AppTabs = () => {
 const AppNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="UniversityMap" component={UniversityMap} options={{ headerShown: false }} />
+      <Stack.Screen name="UniversityMap" component={UniversityMap}  />
       <Stack.Screen name="Home" component={AppTabs} options={{ headerShown: false }}/>
       <Stack.Screen name="EventList" component={EventList} />
       <Stack.Screen name="EventDetails" component={EventDetails} />
