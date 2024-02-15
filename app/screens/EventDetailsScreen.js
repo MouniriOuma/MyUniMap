@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { firestoreDB } from '../../FirebaseConfig';
-import { collection, doc, getDoc } from 'firebase/firestore'; 
+import { View, Text, StyleSheet, Button, Alert, TouchableOpacity  } from 'react-native';
+import { firestoreDB,firebaseAuth } from '../../FirebaseConfig';
+import { collection, doc, getDoc, deleteDoc } from 'firebase/firestore'; 
 
 const EventDetails = ({ route, navigation }) => {
   const { eventId } = route.params;
   const [eventDetails, setEventDetails] = useState(null);
+  const [isCreator, setIsCreator] = useState(false);
 
   useEffect(() => {
     const fetchEventDetails = async () => {
@@ -13,6 +14,9 @@ const EventDetails = ({ route, navigation }) => {
         const eventDoc = await getEventDocument(eventId);
         if (eventDoc.exists()) {
           setEventDetails(eventDoc.data());
+          console.log(eventDoc.data())
+          console.log(eventDoc.data().creator)
+          checkIfCreator(eventDoc.data().creator);
         } else {
           console.log('Event not found');
         }
@@ -30,6 +34,32 @@ const EventDetails = ({ route, navigation }) => {
     return eventDoc;
   };
 
+  //fetch user
+  useEffect(() => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged(user => {
+      if (user) {
+        // Extract username from email
+        const username = user.email.split('@')[0];
+        setCreator(username);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+
+  //check if cretor to show delete button
+  const checkIfCreator = (creator) => {
+    const currentUser = firebaseAuth.currentUser;
+    if (currentUser) {
+      // Extract username from email
+      const username = currentUser.email.split('@')[0];
+      // Compare extracted username with creator
+      if (username === creator) {
+        setIsCreator(true);
+      }
+    }
+  };
+  
   if (!eventDetails) {
     return (
       <View style={styles.container}>
@@ -37,6 +67,17 @@ const EventDetails = ({ route, navigation }) => {
       </View>
     );
   }
+
+  const handleDeleteEvent = async () => {
+    try {
+      await deleteDoc(doc(firestoreDB, 'events', eventId));
+      console.log('Event deleted successfully');
+      navigation.navigate('Events');
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      Alert.alert('Error', 'Failed to delete the event. Please try again later.');
+    }
+  };
 
 
   const handleLocationPress = () => {
@@ -69,9 +110,20 @@ const EventDetails = ({ route, navigation }) => {
           <Text style={styles.detailLabel}>Location:</Text>
           <Text style={styles.detailValue}>{eventDetails.location}</Text>
           <View style={styles.buttonMargin} />
-          <Button title="View on Map" color="#007260" onPress={handleLocationPress} />
+          <TouchableOpacity onPress={handleLocationPress} style={styles.viewOnMapButton}>
+            <Text style={styles.viewOnMapButtonText}>View on Map</Text>
+          </TouchableOpacity>
         </View>
       </View>
+      {/* Render delete button if the current user is the creator */}
+      {isCreator && (
+        <View>
+            <View style={styles.buttonMargin} />
+            <TouchableOpacity onPress={handleDeleteEvent} style={styles.deleteButton}>
+              <Text style={styles.deleteButtonText}>Delete Event</Text>
+            </TouchableOpacity>
+          </View>
+          )}
     </View>
   );
   
@@ -116,6 +168,30 @@ const styles = StyleSheet.create({
     buttonMargin: {
         marginVertical: 10,
     },
+    viewOnMapButton: {
+      backgroundColor: '#007260',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 20,
+      alignItems: 'center',
+    },
+    viewOnMapButtonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    deleteButton: {
+      backgroundColor: '#C02E4A',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 20,
+      alignItems: 'center',
+    },
+    deleteButtonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
+    }
   });
   
 
