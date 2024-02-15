@@ -85,38 +85,3 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
-
-// import React from 'react';
-// import { View, Text, Button } from 'react-native';
-// import { firebaseAuth } from '../../FirebaseConfig';
-
-// const Profile = () => {
-
-//     useEffect(() => {
-//         const unsubscribe = firebaseAuth.onAuthStateChanged(user => {
-//           if (user) {
-//             // Extract username from email
-//             const username = user.email.split('@')[0];
-//             setCreator(username);
-//           }
-//         });
-//         return unsubscribe;
-//       }, []);
-
-//     const handleLogout = () => {
-//         firebaseAuth.signOut().then(() => {
-//         console.log('User signed out');
-//         }).catch((error) => {
-//         console.error('Sign out error', error);
-//         });
-//     };
-
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>This is the profile page</Text>
-//       <Button onPress={handleLogout} title="Logout" />
-//     </View>
-//   );
-// };
-
-// export default Profile;
