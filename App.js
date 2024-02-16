@@ -9,7 +9,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigator from './app/navigation/AppNavigator';
-import TutorialNavigation from './app/navigation/TutorialNavigation';
 import Login from './app/screens/Login';
 import SignUp from './app/screens/SignUp';
 import TutorialScreen1 from './app/screens/TutorialScreen1';
@@ -61,7 +60,7 @@ export default function App() {
         <Stack.Navigator initialRouteName='Login'>
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
               <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
-              <Stack.Screen name="Home" component={AppNavigator} options={{ headerShown: false }} />                   
+              <Stack.Screen name="Events" component={AppNavigator} options={{ headerShown: false }} />                   
               <Stack.Screen name="TutorialScreen1" component={TutorialScreen1} options={{ headerShown: false }}  />                   
               <Stack.Screen name="TutorialScreen2" component={TutorialScreen2} options={{ headerShown: false }}  />                   
               <Stack.Screen name="TutorialScreen3" component={TutorialScreen3} options={{ headerShown: false }}  />                   

@@ -34,20 +34,7 @@ const Login = ({ navigation }) => {
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
             console.log("response", response);
-            navigation.navigate('Home');
-            // // Check if user is new (first time login)
-            // if (response.user) {
-            //     const user = response.user;
-            //     if (user.metadata.createdAt === user.metadata.lastLoginAt) {
-            //         setIsNewUser(true);
-            //         console.log("isNewUser", true);
-            //         navigation.navigate('TutorialScreen1');
-            //     } else {
-            //         setIsNewUser(false);
-            //         console.log("isNewUser", false);
-            //         navigation.navigate('Home');
-            //     }
-            // }
+            navigation.navigate('Events');
         } catch (error) {
             console.log(error);
             alert('Login failed:' + error.message);
