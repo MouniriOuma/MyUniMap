@@ -40,6 +40,13 @@ const SignUp = ({ navigation }) => {
             <View style={styles.logoContainer}>
                 <Image source={require('../../assets/UCD.jpg')} style={styles.logo} />
             </View>
+            <Text style={{
+                        fontSize: 50,
+                        fontWeight: '800',
+                        color: "#007260",
+                        textAlign: 'center',
+                        marginBottom: 20,
+                    }}>Signup</Text>
             <KeyboardAvoidingView behavior="padding">
                 <TextInput
                     value={email}
@@ -80,7 +87,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     logoContainer: {
-        marginBottom: 20
+        marginBottom: 10
     },
     logo: {
         width: 150,
