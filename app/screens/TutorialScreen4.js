@@ -9,24 +9,20 @@ const TutorialScreen4 = ({ navigation }) => {
             style={{
                 flex: 1
             }}
-            colors={[COLORS.green, COLORS.white]}
+            colors={[COLORS.red, COLORS.white]}
         >
             <View style={{  flex: 1 }}>
                 <View style={{ position: 'relative', height: 400 }}>
                 <Image
-                        source={require('../../assets/event.jpeg')}
+                        source={require('../../assets/studyGroup.png')}
                         style={{
-                            height: 600,
-                            width: 500,
-                            borderRadius: 20,
-                            position: "absolute",
-                            top: -250,
-                            left: 30,
-                            transform: [
-                                { translateX: 50 },
-                                { translateY: 50 },
-                                { rotate: "-35deg" }
-                            ]
+                            height: '100%', 
+                            width: '100%', 
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20,
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
                         }}
                     />
                 </View>
@@ -36,7 +32,7 @@ const TutorialScreen4 = ({ navigation }) => {
 
                 <View style={{
                     paddingHorizontal: 22,
-                    marginTop: 30,
+                    marginTop: 15,
                     position: "absolute",
                     top: 400,
                     width: "100%",
@@ -45,9 +41,9 @@ const TutorialScreen4 = ({ navigation }) => {
                     <Text style={{
                         fontSize: 50,
                         fontWeight: '800',
-                        color: COLORS.primary,
+                        color: COLORS.white,
                         textAlign: 'center', // Center the text horizontally
-                    }}>Upcoming Events</Text>
+                    }}>Create Events & Study Sessions</Text>
 
                     <View style={{ marginVertical: 22 }}>
                         <Text style={{
@@ -55,13 +51,14 @@ const TutorialScreen4 = ({ navigation }) => {
                             color: COLORS.white,
                             marginVertical: 4,
                             textAlign: 'center', // Center the text horizontally
-                        }}>Discover the latest happenings and upcoming events in our community. 
-                        From workshops to social gatherings, find events that suit your interests and schedule. </Text>
+                        }}>Craft your events and study sessions seamlessly with our Add Event page. 
+                        Whether it's collaborative studying or social gatherings, 
+                        our intuitive tools empower you to organize memorable experiences with ease. </Text>
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.white,
                             textAlign: 'center', // Center the text horizontally
-                        }}>Click on any event to explore more details and join the excitement!</Text>
+                        }}> Start shaping your calendar today!</Text>
                     </View>
 
                     </View>
@@ -81,11 +78,11 @@ const TutorialScreen4 = ({ navigation }) => {
                                     width:90,
                                     alignItems: 'center',
                                 }}
-                                onPress={() => navigation.navigate("TutorialScreen1")}
+                                onPress={() => navigation.navigate("TutorialScreen3")}
                             >
                                 <Text style={{
                                     fontSize: 16,
-                                    color: COLORS.green,
+                                    color: COLORS.black,
                                     fontWeight: "bold",
                                     textAlign: 'center',
                                 }}>previous</Text>
@@ -102,17 +99,17 @@ const TutorialScreen4 = ({ navigation }) => {
                                     paddingVertical: 10,
                                     paddingHorizontal: 20,
                                     borderRadius: 20,
-                                    width:90,
+                                    width:110,
                                     alignItems: 'center',
                                 }}
-                                onPress={() => navigation.navigate("TutorialScreen3")}
+                                onPress={() => navigation.navigate("Events")}
                             >
                                 <Text style={{
                                     fontSize: 16,
-                                    color: COLORS.green,
+                                    color: COLORS.black,
                                     fontWeight: "bold",
                                     textAlign: "center",
-                                }}>next</Text>
+                                }}>get started</Text>
                             </Pressable>
                         </View>
                     
@@ -131,6 +128,8 @@ const COLORS = {
     secondary: "#39B68D",
     grey: "#CCCCCC",
     green: "#007260",
+    
+    red: "#7C3030",
 }
 
 export default TutorialScreen4;

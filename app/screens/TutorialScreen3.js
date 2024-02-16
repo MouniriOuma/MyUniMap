@@ -9,19 +9,20 @@ const TutorialScreen3 = ({ navigation }) => {
             style={{
                 flex: 1
             }}
-            colors={[COLORS.white, COLORS.black]}
+            colors={[COLORS.brown, COLORS.white]}
         >
             <View style={{ marginTop: 10, flex: 1 }}>
-                <View>
+                <View style={{ position: 'relative', height: 400 }}>
                     <Image
                         source={require('../../assets/location.jpg')}
                         style={{
-                            height: 200,
-                            width: 200,
-                            borderRadius: 20,
-                            position: "absolute",
-                            top: 110,
-                            left: 100,
+                            height: '100%', 
+                            width: '100%', 
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20,
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
                         }}
                     />
                 </View>
@@ -31,14 +32,14 @@ const TutorialScreen3 = ({ navigation }) => {
                 <View style={{
                     paddingHorizontal: 22,
                     position: "absolute",
-                    top: 400,
+                    top: 420,
                     width: "100%"
                 }}>
                     <Text style={{
-                        fontSize: 50,
+                        fontSize: 47,
                         fontWeight: 800,
                         color: COLORS.white
-                    }}>Upcoming Events</Text>
+                    }}>Explore Your Campus</Text>
 
                     <View style={{ marginVertical: 22 }}>
                         <Text style={{
@@ -74,7 +75,7 @@ const TutorialScreen3 = ({ navigation }) => {
                             >
                                 <Text style={{
                                     fontSize: 16,
-                                    color: COLORS.green,
+                                    color: COLORS.black,
                                     fontWeight: "bold",
                                 }}>previous</Text>
                             </Pressable>
@@ -95,7 +96,7 @@ const TutorialScreen3 = ({ navigation }) => {
                             >
                                 <Text style={{
                                     fontSize: 16,
-                                    color: COLORS.green,
+                                    color: COLORS.black,
                                     fontWeight: "bold",
                                 }}>next</Text>
                             </Pressable>
@@ -115,6 +116,7 @@ const COLORS = {
     secondary: "#39B68D",
     grey: "#CCCCCC",
     green: "#007260",
+    brown: '#483C32',
 }
 
 export default TutorialScreen3;
