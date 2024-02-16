@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { firebaseAuth } from '../../FirebaseConfig';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const Profile = () => {
+  const navigation = useNavigation();
   const [creator, setCreator] = useState('');
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const Profile = () => {
   const handleLogout = () => {
     firebaseAuth.signOut().then(() => {
       console.log('User signed out');
+      navigation.navigate('Login');
     }).catch((error) => {
       console.error('Sign out error', error);
     });

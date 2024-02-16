@@ -121,7 +121,7 @@ const TutorialScreen1 = ({ navigation }) => {
                     }}>
                         
                         <Pressable
-                            onPress={() => navigation.navigate("TutorialScreen2")}
+                            onPress={() => navigation.navigate("Home")}
                         >
                             <Text style={{
                                 fontSize: 16,

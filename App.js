@@ -12,6 +12,7 @@ import AppNavigator from './app/navigation/AppNavigator';
 import TutorialNavigation from './app/navigation/TutorialNavigation';
 import Login from './app/screens/Login';
 import SignUp from './app/screens/SignUp';
+import TutorialScreen1 from './app/screens/TutorialScreen1';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,17 +54,11 @@ export default function App() {
     <SafeAreaView style={{ flex: 1}}>
       
       <NavigationContainer>
-        <Stack.Navigator>
-          {!user ? (
-            <>
+        <Stack.Navigator initialRouteName='Login'>
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
               <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
-            </>
-          ) : isNewUser ? (
-            <Stack.Screen name="TutorialNavigation" component={TutorialNavigation} options={{ headerShown: false }} />
-          ) : (
-            <Stack.Screen name="AppNavigator" component={AppNavigator} options={{ headerShown: false }} />
-          )}            
+              <Stack.Screen name="Home" component={AppNavigator} options={{ headerShown: false }} />                   
+              <Stack.Screen name="TutorialScreen1" component={TutorialScreen1} options={{ headerShown: false }}  />                   
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

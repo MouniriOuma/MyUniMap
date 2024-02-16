@@ -1,19 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView, Image } from 'react-native';
 import { firebaseAuth } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const auth = firebaseAuth;
+    const [user, setUser] = useState(null);
+    const [isNewUser, setIsNewUser] = useState(false);
 
+    const clearInputFields = () => {
+        setEmail('');
+        setPassword('');
+      };
+    
+    useEffect(() => {
+        const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
+            console.log('user:', user);
+            setUser(user);
+            clearInputFields();
+        });
+    
+        return () => unsubscribe();
+    }, []);
+    
     const signIn = async () => {
         setLoading(true);
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
-            console.log(response);
+            console.log("response", response);
+            navigation.navigate('Home');
+            // // Check if user is new (first time login)
+            // if (response.user) {
+            //     const user = response.user;
+            //     if (user.metadata.createdAt === user.metadata.lastLoginAt) {
+            //         setIsNewUser(true);
+            //         console.log("isNewUser", true);
+            //         navigation.navigate('TutorialScreen1');
+            //     } else {
+            //         setIsNewUser(false);
+            //         console.log("isNewUser", false);
+            //         navigation.navigate('Home');
+            //     }
+            // }
         } catch (error) {
             console.log(error);
             alert('Login failed:' + error.message);

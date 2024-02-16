@@ -7,15 +7,22 @@ const SignUp = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
     const auth = firebaseAuth;
 
     const signUp = async () => {
         setLoading(true);
         try {
+        // Check if the email ends with 'ucd.ac.ma'
+        if (!email.endsWith('ucd.ac.ma')) {
+            throw new Error('Invalid email domain. Please use an email ending with "ucd.ac.ma".');
+        }
+        
             const response = await createUserWithEmailAndPassword(auth, email, password);
             console.log(response);
-            alert('Signup successful!');
-            goToLogin();
+            //alert('Signup successful! Now login and enjoy your experience');
+            navigation.navigate('TutorialScreen1');
         } catch (error) {
             console.log(error);
             alert('Signup failed:' + error.message);
