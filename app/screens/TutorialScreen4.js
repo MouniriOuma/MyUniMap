@@ -14,7 +14,7 @@ const TutorialScreen4 = ({ navigation }) => {
             <View style={{  flex: 1 }}>
                 <View style={{ position: 'relative', height: 400 }}>
                 <Image
-                        source={require('../../assets/studyGroup.png')}
+                        source={require('../../assets/studyGroup2.png')}
                         style={{
                             height: '100%', 
                             width: '100%', 
