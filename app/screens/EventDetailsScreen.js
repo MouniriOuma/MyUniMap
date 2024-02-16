@@ -72,7 +72,7 @@ const EventDetails = ({ route, navigation }) => {
     try {
       await deleteDoc(doc(firestoreDB, 'events', eventId));
       console.log('Event deleted successfully');
-      navigation.navigate('Events');
+      navigation.goBack();
     } catch (error) {
       console.error('Error deleting event:', error);
       Alert.alert('Error', 'Failed to delete the event. Please try again later.');

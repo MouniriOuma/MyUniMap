@@ -16,6 +16,8 @@ const AddEvent = () => {
   const [date, setDate] = useState('');
   const [creator, setCreator] = useState('');
 
+  const navigation = useNavigation();
+
 
   const [selectedPlace, setSelectedPlace] = useState(null);
 
@@ -44,7 +46,6 @@ const AddEvent = () => {
     return unsubscribe;
   }, []);
 
-  const navigation = useNavigation();
 
   const addEvent = async () => {
     try {
@@ -63,8 +64,13 @@ const AddEvent = () => {
       setLocation('');
       setDate('');
 
+      console.log('Form fields cleared successfully');
+
       // Navigate to the EventList page
-      navigation.navigate('Events');
+      console.log('Navigating to Events page...');
+      navigation.goBack();
+      console.log('Navigation completed.');
+
     } catch (error) {
       console.error('Error adding event:', error);
     }
