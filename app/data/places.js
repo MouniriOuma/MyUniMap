@@ -26,8 +26,9 @@ const placesData = [
     //mosque
     { name: 'Mosquée', coordinates: { latitude: 33.224741106263565,longitude: -8.488097434266992  } },
 
-
+    //halls
     { name: 'Hall', coordinates: { latitude: 33.22606934240605,longitude: -8.4861910909656 } },
+    { name: 'La Cour', coordinates: { latitude: 33.22581399061205,longitude: -8.486741311709402 } },
 
     //departments
     { name: 'Departement de biologie', coordinates: { latitude: 33.224867686753335, longitude: -8.486307020156227 } },
