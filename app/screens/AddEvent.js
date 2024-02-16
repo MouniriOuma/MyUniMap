@@ -84,12 +84,13 @@ const AddEvent = () => {
         value={description}
         onChangeText={text => setDescription(text)}
       />
-
+      <Text style={styles.label}>Location:</Text>
       <SelectList
       setSelected={(val) => handlePlaceChange(val)}
       data={formattedPlacesData}
       save="value"
-      style={styles.input}
+      boxStyles={styles.input}
+      dropdownStyles={styles.dropDown}
       />
       {selectedPlace && <Text>Selected Place: {selectedPlace}</Text>}
       
@@ -121,6 +122,14 @@ const styles = StyleSheet.create({
       borderColor: '#39B68D', 
       borderWidth: 1,
       marginBottom: 10,
+      paddingHorizontal: 10,
+      borderRadius: 10, 
+      color: '#007260', 
+    },
+    dropDown: {
+      width: "100%",
+      borderColor: '#39B68D', 
+      borderWidth: 1,
       paddingHorizontal: 10,
       borderRadius: 10, 
       color: '#007260', 
