@@ -9,12 +9,12 @@ const TutorialScreen1 = ({ navigation }) => {
             style={{
                 flex: 1
             }}
-            colors={[COLORS.secondary, COLORS.primary]}
+            colors={[COLORS.white, COLORS.primary]}
         >
-            <View style={{ flex: 1 }}>
+            <View style={{ marginTop: 50, flex: 1 }}>
                 <View>
                     <Image
-                        source={require('../../assets/event.jpg')}
+                        source={require('../../assets/event.jpeg')}
                         style={{
                             height: 100,
                             width: 100,
@@ -30,7 +30,7 @@ const TutorialScreen1 = ({ navigation }) => {
                     />
 
                     <Image
-                        source={require('../../assets/location.jpg')}
+                        source={require('../../assets/UCD.jpg')}
                         style={{
                             height: 100,
                             width: 100,
@@ -64,7 +64,7 @@ const TutorialScreen1 = ({ navigation }) => {
                     />
 
                     <Image
-                        source={require('../../assets/UCD.jpg')}
+                        source={require('../../assets/location.jpg')}
                         style={{
                             height: 200,
                             width: 200,
@@ -117,21 +117,25 @@ const TutorialScreen1 = ({ navigation }) => {
                     <View style={{
                         flexDirection: "row",
                         marginTop: 12,
-                        justifyContent: "right"
+                        justifyContent: "flex-end", 
                     }}>
-                        
                         <Pressable
-                            onPress={() => navigation.navigate("Home")}
+                            style={{
+                                backgroundColor: '#ffffff', 
+                                paddingVertical: 10, 
+                                paddingHorizontal: 20, 
+                                borderRadius: 20, 
+                            }}
+                            onPress={() => navigation.navigate("TutorialScreen2")}
                         >
                             <Text style={{
                                 fontSize: 16,
-                                color: COLORS.white,
+                                color: COLORS.green, // Change text color to black
                                 fontWeight: "bold",
-                                marginLeft: 4
                             }}>next</Text>
                         </Pressable>
-
                     </View>
+
                 </View>
             </View>
         </LinearGradient>
@@ -143,7 +147,8 @@ const COLORS = {
     black: "#222222",
     primary: "#007260",
     secondary: "#39B68D",
-    grey: "#CCCCCC"
+    grey: "#CCCCCC",
+    green: "#007260",
 }
 
 export default TutorialScreen1;

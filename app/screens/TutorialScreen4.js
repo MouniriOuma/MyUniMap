@@ -2,7 +2,7 @@ import { View, Text, Pressable, Image } from 'react-native'
 import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
 
-const TutorialScreen2 = ({ navigation }) => {
+const TutorialScreen4 = ({ navigation }) => {
 
     return (
         <LinearGradient
@@ -13,16 +13,20 @@ const TutorialScreen2 = ({ navigation }) => {
         >
             <View style={{  flex: 1 }}>
                 <View style={{ position: 'relative', height: 400 }}>
-                    <Image
+                <Image
                         source={require('../../assets/event.jpeg')}
                         style={{
-                            height: '100%', 
-                            width: '100%', 
-                            borderTopLeftRadius: 20,
-                            borderTopRightRadius: 20,
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
+                            height: 600,
+                            width: 500,
+                            borderRadius: 20,
+                            position: "absolute",
+                            top: -250,
+                            left: 30,
+                            transform: [
+                                { translateX: 50 },
+                                { translateY: 50 },
+                                { rotate: "-35deg" }
+                            ]
                         }}
                     />
                 </View>
@@ -129,4 +133,4 @@ const COLORS = {
     green: "#007260",
 }
 
-export default TutorialScreen2;
+export default TutorialScreen4;

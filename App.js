@@ -13,6 +13,10 @@ import TutorialNavigation from './app/navigation/TutorialNavigation';
 import Login from './app/screens/Login';
 import SignUp from './app/screens/SignUp';
 import TutorialScreen1 from './app/screens/TutorialScreen1';
+import TutorialScreen2 from './app/screens/TutorialScreen2';
+import TutorialScreen3 from './app/screens/TutorialScreen3';
+import TutorialScreen4 from './app/screens/TutorialScreen4';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +63,9 @@ export default function App() {
               <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
               <Stack.Screen name="Home" component={AppNavigator} options={{ headerShown: false }} />                   
               <Stack.Screen name="TutorialScreen1" component={TutorialScreen1} options={{ headerShown: false }}  />                   
+              <Stack.Screen name="TutorialScreen2" component={TutorialScreen2} options={{ headerShown: false }}  />                   
+              <Stack.Screen name="TutorialScreen3" component={TutorialScreen3} options={{ headerShown: false }}  />                   
+              <Stack.Screen name="TutorialScreen4" component={TutorialScreen4} options={{ headerShown: false }}  />                   
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

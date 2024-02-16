@@ -2,67 +2,62 @@ import { View, Text, Pressable, Image } from 'react-native'
 import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
 
-const TutorialScreen2 = ({ navigation }) => {
+const TutorialScreen3 = ({ navigation }) => {
 
     return (
         <LinearGradient
             style={{
                 flex: 1
             }}
-            colors={[COLORS.green, COLORS.white]}
+            colors={[COLORS.white, COLORS.black]}
         >
-            <View style={{  flex: 1 }}>
-                <View style={{ position: 'relative', height: 400 }}>
+            <View style={{ marginTop: 10, flex: 1 }}>
+                <View>
                     <Image
-                        source={require('../../assets/event.jpeg')}
+                        source={require('../../assets/location.jpg')}
                         style={{
-                            height: '100%', 
-                            width: '100%', 
-                            borderTopLeftRadius: 20,
-                            borderTopRightRadius: 20,
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
+                            height: 200,
+                            width: 200,
+                            borderRadius: 20,
+                            position: "absolute",
+                            top: 110,
+                            left: 100,
                         }}
                     />
                 </View>
-
 
                 {/* content  */}
 
                 <View style={{
                     paddingHorizontal: 22,
-                    marginTop: 30,
                     position: "absolute",
                     top: 400,
-                    width: "100%",
-                    alignItems: 'center', // Center the content horizontally
+                    width: "100%"
                 }}>
                     <Text style={{
                         fontSize: 50,
-                        fontWeight: '800',
-                        color: COLORS.primary,
-                        textAlign: 'center', // Center the text horizontally
+                        fontWeight: 800,
+                        color: COLORS.white
                     }}>Upcoming Events</Text>
 
                     <View style={{ marginVertical: 22 }}>
                         <Text style={{
                             fontSize: 18,
                             color: COLORS.white,
-                            marginVertical: 4,
-                            textAlign: 'center', // Center the text horizontally
-                        }}>Discover the latest happenings and upcoming events in our community. 
-                        From workshops to social gatherings, find events that suit your interests and schedule. </Text>
+                            marginVertical: 4
+                        }}>Navigate through the campus like never before with our interactive university map page. 
+                        Find your event locations effortlessly by clicking on event details to get directions 
+                        or utilize the search bar atop the map for quick access to specific destinations. 
+                        </Text>
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.white,
-                            textAlign: 'center', // Center the text horizontally
-                        }}>Click on any event to explore more details and join the excitement!</Text>
+                        }}>Discover the beauty and functionality of our campus map today!</Text>
                     </View>
 
-                    </View>
+                    
 
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" , marginTop: 250, marginHorizontal: 20,}}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <View style={{
                             flexDirection: "row",
                             marginTop: 12,
@@ -74,16 +69,13 @@ const TutorialScreen2 = ({ navigation }) => {
                                     paddingVertical: 10,
                                     paddingHorizontal: 20,
                                     borderRadius: 20,
-                                    width:90,
-                                    alignItems: 'center',
                                 }}
-                                onPress={() => navigation.navigate("TutorialScreen1")}
+                                onPress={() => navigation.navigate("TutorialScreen2")}
                             >
                                 <Text style={{
                                     fontSize: 16,
                                     color: COLORS.green,
                                     fontWeight: "bold",
-                                    textAlign: 'center',
                                 }}>previous</Text>
                             </Pressable>
                         </View>
@@ -98,21 +90,17 @@ const TutorialScreen2 = ({ navigation }) => {
                                     paddingVertical: 10,
                                     paddingHorizontal: 20,
                                     borderRadius: 20,
-                                    width:90,
-                                    alignItems: 'center',
                                 }}
-                                onPress={() => navigation.navigate("TutorialScreen3")}
+                                onPress={() => navigation.navigate("TutorialScreen4")}
                             >
                                 <Text style={{
                                     fontSize: 16,
                                     color: COLORS.green,
                                     fontWeight: "bold",
-                                    textAlign: "center",
                                 }}>next</Text>
                             </Pressable>
                         </View>
-                    
-
+                    </View>
 
                 </View>
             </View>
@@ -129,4 +117,4 @@ const COLORS = {
     green: "#007260",
 }
 
-export default TutorialScreen2;
+export default TutorialScreen3;
