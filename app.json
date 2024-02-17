@@ -24,7 +24,7 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCRhpWDB0eIIC6izly6sHjr_2MSJtlyTHw"
+          "apiKey": "YOUR_API_KEY"
         }
       },
       "package": "com.MyUniMap"

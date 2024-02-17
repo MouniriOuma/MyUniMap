@@ -33,19 +33,6 @@ const UniversityMap = ({ route }) => {
     }
   }, [userDestination]);
   
-  /* //destination brought up from EventDetails
-  useEffect(() => {
-    // Find the coordinates for the given location from placesData
-    const locationData = placesData.find(item => item.name === userDestination);
-    if (locationData) {
-        setDestination({
-            latitude: locationData.coordinates.latitude,
-            longitude: locationData.coordinates.longitude,
-        });
-    }
-  }, [userDestination]);
- */
-
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -84,39 +71,6 @@ const UniversityMap = ({ route }) => {
       }
     }
   }, [selectedPlace]);
-  /* //location permission
-  useEffect(() => {
-      (async () => {
-          let { status } = await Location.requestForegroundPermissionsAsync();
-          if (status !== 'granted') {
-              setErrorMsg('Permission to access location was denied');
-              return;
-          }
-          
-          let location = await Location.getCurrentPositionAsync({});
-          setLocation(location);
-
-          //set the origin state
-          setOrigin({
-              latitude: location.coords.latitude, 
-              longitude: location.coords.longitude,
-          });
-      })();
-  }, []);
-
-  //destination from the search bar
-  useEffect(() => {
-    if (selectedPlace) {
-      const locationData = placesData.find((place) => place.name === selectedPlace);
-      if (locationData) {
-        setDestination({
-          latitude: locationData.coordinates.latitude,
-          longitude: locationData.coordinates.longitude,
-        });
-      }
-    }
-  }, [selectedPlace]);
-   */
 
   //search bar
   const formattedPlacesData = placesData.map((place) => ({
@@ -153,7 +107,7 @@ const UniversityMap = ({ route }) => {
             <MapViewDirections
               origin={location.coords}
               destination={destination}
-              apikey="AIzaSyCRhpWDB0eIIC6izly6sHjr_2MSJtlyTHw"
+              apikey="YOUR_API_KEY"
               strokeWidth={4}
               strokeColor="red"
               mode={'WALKING'}
@@ -190,14 +144,9 @@ const UniversityMap = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    //...StyleSheet.absoluteFillObject,
-    //justifyContent: 'flex-end',
-    //alignItems: 'center',
-    flex: 1,
+  container: {flex: 1,
   },
   map: {
-    //...StyleSheet.absoluteFillObject,
     flex: 1,
   },
   searchContainer: {
