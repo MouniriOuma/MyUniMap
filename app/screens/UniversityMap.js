@@ -18,7 +18,22 @@ const UniversityMap = ({ route }) => {
   const { userDestination } = route.params || {}; 
   const [destination, setDestination] = useState(null);
 
-  //destination brought up from EventDetails
+
+  useEffect(() => {
+    console.log('userDestination:', userDestination);
+    // Find the coordinates for the given location from placesData
+    const locationData = placesData.find(item => item.name === userDestination);
+    console.log('locationData:', locationData);
+    if (locationData) {
+      console.log('Setting destination:', locationData.coordinates);
+      setDestination({
+        latitude: locationData.coordinates.latitude,
+        longitude: locationData.coordinates.longitude,
+      });
+    }
+  }, [userDestination]);
+  
+  /* //destination brought up from EventDetails
   useEffect(() => {
     // Find the coordinates for the given location from placesData
     const locationData = placesData.find(item => item.name === userDestination);
@@ -29,8 +44,47 @@ const UniversityMap = ({ route }) => {
         });
     }
   }, [userDestination]);
+ */
 
-  //location permission
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      const initLocation = await Location.getCurrentPositionAsync({});
+      setLocation(initLocation);
+
+      const intervalId = setInterval(() => {
+        getLiveLocation();
+      }, 4000);
+
+      return () => clearInterval(intervalId);
+    })();
+  }, []);
+
+
+  const getLiveLocation = async () => {
+    const liveLocation = await Location.getCurrentPositionAsync({});
+    setLocation(liveLocation);
+  };
+  
+
+  //destination from the search bar
+  useEffect(() => {
+    if (selectedPlace) {
+      const locationData = placesData.find((place) => place.name === selectedPlace);
+      if (locationData) {
+        setDestination({
+          latitude: locationData.coordinates.latitude,
+          longitude: locationData.coordinates.longitude,
+        });
+      }
+    }
+  }, [selectedPlace]);
+  /* //location permission
   useEffect(() => {
       (async () => {
           let { status } = await Location.requestForegroundPermissionsAsync();
@@ -62,7 +116,7 @@ const UniversityMap = ({ route }) => {
       }
     }
   }, [selectedPlace]);
-  
+   */
 
   //search bar
   const formattedPlacesData = placesData.map((place) => ({
@@ -97,7 +151,7 @@ const UniversityMap = ({ route }) => {
         >
           {destination && location && (
             <MapViewDirections
-              origin={{ latitude: location.coords.latitude, longitude: location.coords.longitude }}
+              origin={location.coords}
               destination={destination}
               apikey="AIzaSyCRhpWDB0eIIC6izly6sHjr_2MSJtlyTHw"
               strokeWidth={4}
@@ -113,7 +167,7 @@ const UniversityMap = ({ route }) => {
           )}
           {location && (
             <Marker
-              coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }}
+              coordinate={location.coords}
               title="Me"
             />
           )}
