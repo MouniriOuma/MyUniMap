@@ -16,6 +16,9 @@ import TutorialScreen2 from './app/screens/TutorialScreen2';
 import TutorialScreen3 from './app/screens/TutorialScreen3';
 import TutorialScreen4 from './app/screens/TutorialScreen4';
 
+//Please replace YOUR_API_KEY with you api key 
+//in 'MyUniMap\app\screens\UniversityMap.js' line 110 
+//in 'MyUniMap\app.json' line 27
 
 const Stack = createNativeStackNavigator();
 
