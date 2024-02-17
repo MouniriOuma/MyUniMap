@@ -15,7 +15,10 @@ const Tab = createBottomTabNavigator();
 
 const AppTabs = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator 
+      tabBarOptions={{
+        activeTintColor: '#007260',
+    }}>
       <Tab.Screen 
         name="Events" 
         component={EventList} 
