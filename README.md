@@ -29,7 +29,7 @@ To get started with MyUniMap, follow these steps:
 
 ## Feedback and Contributions
 
-Your feedback is invaluable to us! If you have any suggestions, feature requests, or encounter any issues while using MyUniMap, please feel free to reach out to us.
+Your feedback is invaluable to me! If you have any suggestions, feature requests, or encounter any issues while using MyUniMap, please feel free to reach out to us.
 
 ## Contact Information
 
