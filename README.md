@@ -29,10 +29,10 @@ To get started with MyUniMap, follow these steps:
 
 ## Feedback and Contributions
 
-Your feedback is invaluable to me! If you have any suggestions, feature requests, or encounter any issues while using MyUniMap, please feel free to reach out to us.
+Your feedback is invaluable to me! If you have any suggestions, feature requests, or encounter any issues while using MyUniMap, please feel free to reach out to me.
 
 ## Contact Information
 
 For more information or inquiries, please contact OUMAIMA MOUNIRI at mouniri.ouma@gmail.com
 
-Thank you for using MyUniMap! We hope it enhances your experience navigating our university campus.
+Thank you for using MyUniMap! I hope it enhances your experience navigating our university campus.
